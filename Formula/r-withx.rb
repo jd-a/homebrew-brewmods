@@ -37,12 +37,12 @@ class RWithx < Formula
       "--enable-memory-profiling",
       "--with-x",
       "--with-aqua",
-      "--with-lapack",
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-tcltk",
       "--with-tcl-config=/usr/local/opt/tcl-tk/lib/tclConfig.sh",
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
+      "--with-lapack"
     ]
 
     # Help CRAN packages find gettext, readline and openblas
