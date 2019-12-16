@@ -1,7 +1,7 @@
 class RWithx < Formula
-  desc "Software environment for statistical computing built with X"
+  desc "Software environment for statistical computing with all capabilities"
   homepage "https://www.r-project.org/"
-  url "https://cran.r-project.org/src/base/R-3/R-3.6.2.tar.gz"
+  url "http://cran.r-project.org/src/base/R-3/R-3.6.2.tar.gz"
   sha256 "bd65a45cddfb88f37370fbcee4ac8dd3f1aebeebe47c2f968fd9770ba2bbc954"
 
   depends_on "pkg-config" => :build
@@ -9,20 +9,27 @@ class RWithx < Formula
   depends_on "gettext"
   depends_on "jpeg"
   depends_on "libpng"
-  depends_on "libtiff"
   depends_on "pcre"
   depends_on "readline"
   depends_on "xz"
-  depends_on :x11
-  depends_on "openblas"
+  depends_on "openblas" => :optional
+  depends_on :java => :optional
+
+  ## SRF - Add additional R capabilities (comment out if undesired)
+  depends_on :x11 # SRF - X11 necessary for tcl-tk since tk.h includes X11 headers. See section A.2.1 Tcl/Tk at < https://cran.r-project.org/doc/manuals/r-release/R-admin.html >
+  depends_on "texinfo" => :optional
+  depends_on "libtiff" => :optional
+  depends_on "sethrfore/r-srf/cairo" => :optional # SRF - Cairo must be build with with X11 support. Use brew install sethrfore/r-srf/cairo
+  depends_on "icu4c" => :optional
+  # depends_on "pango" => :optional
 
   # needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin"
 
   resource "gss" do
-    url "https://cloud.r-project.org/src/contrib/gss_2.1-10.tar.gz", :using => :nounzip
-    mirror "https://mirror.las.iastate.edu/CRAN/src/contrib/gss_2.1-10.tar.gz"
-    sha256 "26c47ecae6a9b7854a1b531c09f869cf8b813462bd8093e3618e1091ace61ee2"
+    url "https://cloud.r-project.org/src/contrib/gss_2.1-9.tar.gz", :using => :nounzip
+    mirror "https://mirror.las.iastate.edu/CRAN/src/contrib/gss_2.1-9.tar.gz"
+    sha256 "2961fe61c1d3bb3fe7b8e1070d6fb1dfc5d71e0c6e8a6b7c46ff6b42867c4cf3"
   end
 
   def install
@@ -32,23 +39,54 @@ class RWithx < Formula
       ENV["ac_cv_have_decl_clock_gettime"] = "no"
     end
 
+    ## SRF - Add cairo capability (comment/uncomment corresponding cairo args below as necessary)
+    # Fix cairo detection with Quartz-only cairo
+    # inreplace ["configure", "m4/cairo.m4"], "cairo-xlib.h", "cairo.h"
+
     args = [
       "--prefix=#{prefix}",
       "--enable-memory-profiling",
-      "--with-x",
+      "--with-x", # SRF - Add X11 support (comment --without-x). Necessary for tcl-tk support.
       "--with-aqua",
+      "--with-lapack",
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
-      "--with-tcltk",
-      "--with-tcl-config=/usr/local/opt/tcl-tk/lib/tclConfig.sh",
-      "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
-      "--with-lapack"
+      "--with-tcltk", # SRF - Add tcl-tk support.
+      "--with-tcl-config=/System/Library/Frameworks/Tcl.framework/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
+      "--with-tk-config=/System/Library/Frameworks/Tk.framework/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
     ]
 
-    # Help CRAN packages find gettext, readline and openblas
-    ["gettext", "readline", "openblas"].each do |f|
+    if build.with? "openblas"
+      args << "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas"
+      ENV.append "LDFLAGS", "-L#{Formula["openblas"].opt_lib}"
+    else
+      args << "--with-blas=-framework Accelerate"
+      ENV.append_to_cflags "-D__ACCELERATE__" if ENV.compiler != :clang
+    end
+
+    if build.with? "java"
+      args << "--enable-java"
+    else
+      args << "--disable-java"
+    end
+
+    ## SRF - Add Cairo support
+    if build.with? "cairo"
+      args << "--with-cairo"
+    else
+      args << "--without-cairo"
+    end
+
+    # Help CRAN packages find gettext and readline
+    ["gettext", "readline"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
+    end
+
+    ## SRF - Help CRAN packages find icu4c (e.g. rJava)
+    if build.with? "icu4c"
+      ENV.append "CPPFLAGS", "-I#{Formula["icu4c"].opt_include}"
+      ENV.append "LDFLAGS", "-L#{Formula["icu4c"].opt_lib}"
     end
 
     system "./configure", *args
