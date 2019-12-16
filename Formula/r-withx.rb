@@ -1,4 +1,4 @@
-class R < Formula
+class Rwithx < Formula
   desc "Software environment for statistical computing built with X"
   homepage "https://www.r-project.org/"
   url "https://cran.r-project.org/src/base/R-3/R-3.6.2.tar.gz"
