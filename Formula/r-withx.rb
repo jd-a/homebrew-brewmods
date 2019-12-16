@@ -14,8 +14,7 @@ class RWithx < Formula
   depends_on "readline"
   depends_on "xz"
   depends_on :x11
-#  depends_on "pango"
-  depends_on "openblas" => :optional
+  depends_on "openblas"
   depends_on "texinfo" => :optional
 
   # needed to preserve executable permissions on files without shebangs
@@ -47,10 +46,11 @@ class RWithx < Formula
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
     ]
 
-    # Help CRAN packages find gettext and readline
+    # Help CRAN packages find gettext, readline and openblas
     ["gettext", "readline"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
+      ENV.append "LDFLAGS", "-L#{Formula["openblas"].opt_lib}"
     end
 
     system "./configure", *args
