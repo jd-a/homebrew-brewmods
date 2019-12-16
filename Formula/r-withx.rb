@@ -4,12 +4,6 @@ class RWithx < Formula
   url "https://cran.r-project.org/src/base/R-3/R-3.6.2.tar.gz"
   sha256 "bd65a45cddfb88f37370fbcee4ac8dd3f1aebeebe47c2f968fd9770ba2bbc954"
 
-  bottle do
-    sha256 "d1d1c643d70a82eae3d702af54502b1446584d560c0e9f59d4814e5598245069" => :catalina
-    sha256 "fcd1dc2749a1b8af36f2fb71ced861ae29edaba1b5924ec3944e25b1227ad142" => :mojave
-    sha256 "b062cbf25e5ed5ea0f27e8b9b7a967ed087876d7b220261e5b152c230aab949a" => :high_sierra
-  end
-
   depends_on "pkg-config" => :build
   depends_on "gcc" # for gfortran
   depends_on "gettext"
@@ -19,6 +13,9 @@ class RWithx < Formula
   depends_on "pcre"
   depends_on "readline"
   depends_on "xz"
+  depends_on :x11
+  depends_on "texinfo" => :optional
+  depends_on "libtiff" => :optional
 
   # needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin"
@@ -39,13 +36,11 @@ class RWithx < Formula
     args = [
       "--prefix=#{prefix}",
       "--enable-memory-profiling",
-      "--without-cairo",
-      "--without-x",
+      "--with-x",
       "--with-aqua",
       "--with-lapack",
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
-      "--disable-java",
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
     ]
 
