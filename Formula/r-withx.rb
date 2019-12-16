@@ -9,13 +9,14 @@ class RWithx < Formula
   depends_on "gettext"
   depends_on "jpeg"
   depends_on "libpng"
-  depends_on "openblas"
+  depends_on "libtiff"
   depends_on "pcre"
   depends_on "readline"
   depends_on "xz"
   depends_on :x11
+#  depends_on "pango"
+  depends_on "openblas" => :optional
   depends_on "texinfo" => :optional
-  depends_on "libtiff" => :optional
 
   # needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin"
@@ -41,6 +42,8 @@ class RWithx < Formula
       "--with-lapack",
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
+      "--with-tcltk",
+      "--with-tcl-config=/usr/local/opt/tcl-tk/tclConfig.sh",
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
     ]
 
