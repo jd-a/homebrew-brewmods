@@ -72,7 +72,7 @@ class TclTkWithx < Formula
     resource("tk").stage do
       cd "unix" do
         system "./configure", *args, "--enable-aqua=yes",
-                              "--without-x", "--with-tcl=#{lib}"
+                              "--with-x", "--with-tcl=#{lib}"
         system "make"
         system "make", "install"
         system "make", "install-private-headers"
