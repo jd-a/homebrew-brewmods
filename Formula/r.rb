@@ -1,5 +1,5 @@
-class RWithx < Formula
-  desc "Software environment for statistical computing with all capabilities"
+class R < Formula
+  desc "Software environment for statistical computing with enhanced capabilities"
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-3/R-3.6.2.tar.gz"
   sha256 "bd65a45cddfb88f37370fbcee4ac8dd3f1aebeebe47c2f968fd9770ba2bbc954"
@@ -9,20 +9,20 @@ class RWithx < Formula
   depends_on "gettext"
   depends_on "jpeg"
   depends_on "libpng"
+  depends_on "libtiff"
   depends_on "pcre"
   depends_on "readline"
   depends_on "xz"
+  depends_on :x11 # SRF - X11 necessary for tcl-tk since tk.h includes X11 headers. See section A.2.1 Tcl/Tk at < https://cran.r-project.org/doc/manuals/r-release/R-admin.html >
+
   depends_on "openblas" => :optional
   depends_on :java => :optional
-
-  ## SRF - Add additional R capabilities (comment out if undesired)
-  depends_on :x11 # SRF - X11 necessary for tcl-tk since tk.h includes X11 headers. See section A.2.1 Tcl/Tk at < https://cran.r-project.org/doc/manuals/r-release/R-admin.html >
   depends_on "texinfo" => :optional
-  depends_on "libtiff" => :optional
-  depends_on "jd-a/brewmods/cairo-withx" => :optional # SRF - Cairo must be build with with X11 support. Use brew install sethrfore/r-srf/cairo
-  depends_on "jd-a/brewmods/tcl-tk-withx" => :optional
   depends_on "icu4c" => :optional
-  # depends_on "pango" => :optional
+  depends_on "texinfo" => :optional
+  depends_on "jd-a/brewmods/cairo" #=> :optional # SRF - Cairo must be build with with X11 support.
+  depends_on "pango" => :optional
+
 
   # needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin"
@@ -53,8 +53,8 @@ class RWithx < Formula
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-tcltk", # SRF - Add tcl-tk support.
-      "--with-tcl-config=/usr/local/opt/tcl-tk-withx/lib/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
-      "--with-tk-config=/usr/local/opt/tcl-tk-withx/lib/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
+      "--with-tcl-config=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Tcl.framework/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
+      "--with-tk-config=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Tk.framework/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
     ]
 
     if build.with? "openblas"
@@ -79,7 +79,7 @@ class RWithx < Formula
     end
 
     # Help CRAN packages find gettext and readline
-    ["gettext", "readline", "tcl-tk-withx"].each do |f|
+    ["gettext", "readline"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
     end
