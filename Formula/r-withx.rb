@@ -79,7 +79,7 @@ class RWithx < Formula
     end
 
     # Help CRAN packages find gettext and readline
-    ["gettext", "readline"].each do |f|
+    ["gettext", "readline", "tcl-tk-withx"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
     end
