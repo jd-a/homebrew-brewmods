@@ -20,6 +20,7 @@ class RWithx < Formula
   depends_on "texinfo" => :optional
   depends_on "libtiff" => :optional
   depends_on "jd-a/brewmods/cairo-withx" => :optional # SRF - Cairo must be build with with X11 support. Use brew install sethrfore/r-srf/cairo
+  depends_on "jd-a/brewmods/tcl-tk-withx" => :optional
   depends_on "icu4c" => :optional
   # depends_on "pango" => :optional
 
@@ -52,8 +53,8 @@ class RWithx < Formula
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-tcltk", # SRF - Add tcl-tk support.
-      "--with-tcl-config=#{Formula["tcl-tk"].opt_lib}/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
-      "--with-tk-config=#{Formula["tcl-tk"].opt_lib}/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
+      "--with-tcl-config=#{Formula["tcl-tk-withx"].opt_lib}/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
+      "--with-tk-config=#{Formula["tcl-tk-withx"].opt_lib}/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
     ]
 
     if build.with? "openblas"
