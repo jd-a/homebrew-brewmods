@@ -77,8 +77,8 @@ class RWithx < Formula
       args << "--without-cairo"
     end
 
-    # Help CRAN packages find gettext and readline
-    ["gettext", "readline"].each do |f|
+    # Help CRAN packages find gettext, readline and tcl-tk
+    ["gettext", "readline", "tcl-tk"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
     end
