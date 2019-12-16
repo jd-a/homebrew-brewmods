@@ -53,8 +53,8 @@ class RWithx < Formula
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-tcltk", # SRF - Add tcl-tk support.
-      "--with-tcl-config=#{Formula["tcl-tk-withx"].opt_lib}/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
-      "--with-tk-config=#{Formula["tcl-tk-withx"].opt_lib}/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
+      "--with-tcl-config=/usr/local/opt/tcl-tk-withx/lib/tclConfig.sh", # SRF - Point to system tcl config file (requires Command Line tools to be installed).
+      "--with-tk-config=/usr/local/opt/tcl-tk-withx/lib/tkConfig.sh" # SRF - Point to system tk config file (requires Command Line tools to be installed).
     ]
 
     if build.with? "openblas"
@@ -78,8 +78,8 @@ class RWithx < Formula
       args << "--without-cairo"
     end
 
-    # Help CRAN packages find gettext, readline and tcl-tk
-    ["gettext", "readline", "tcl-tk"].each do |f|
+    # Help CRAN packages find gettext and readline
+    ["gettext", "readline"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
     end
