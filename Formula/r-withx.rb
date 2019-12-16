@@ -43,7 +43,7 @@ class RWithx < Formula
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-tcltk",
-      "--with-tcl-config=/usr/local/opt/tcl-tk/tclConfig.sh",
+      "--with-tcl-config=/usr/local/opt/tcl-tk/lib/tclConfig.sh",
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
     ]
 
