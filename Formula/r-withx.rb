@@ -15,7 +15,6 @@ class RWithx < Formula
   depends_on "xz"
   depends_on :x11
   depends_on "openblas"
-  depends_on "texinfo" => :optional
 
   # needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin"
@@ -47,10 +46,9 @@ class RWithx < Formula
     ]
 
     # Help CRAN packages find gettext, readline and openblas
-    ["gettext", "readline"].each do |f|
+    ["gettext", "readline", "openblas"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
-      ENV.append "LDFLAGS", "-L#{Formula["openblas"].opt_lib}"
     end
 
     system "./configure", *args
