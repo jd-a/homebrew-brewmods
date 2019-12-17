@@ -20,8 +20,8 @@ class R < Formula
   depends_on "texinfo" => :optional
   depends_on "icu4c" => :optional
   depends_on "texinfo" => :optional
-  depends_on "jd-a/brewmods/cairo" #=> :optional # SRF - Cairo must be build with with X11 support.
-  depends_on "pango" => :optional
+  depends_on "jd-a/brewmods/cairo" # => :optional # SRF - Cairo must be build with with X11 support.
+  depends_on "jd-a/brewmods/pango" => :optional
 
 
   # needed to preserve executable permissions on files without shebangs
@@ -72,11 +72,11 @@ class R < Formula
     end
 
     ## SRF - Add Cairo support
-    if build.with? "cairo"
-      args << "--with-cairo"
-    else
-      args << "--without-cairo"
-    end
+#    if build.with? "cairo"
+#      args << "--with-cairo"
+#    else
+#      args << "--without-cairo"
+#    end
 
     # Help CRAN packages find gettext and readline
     ["gettext", "readline"].each do |f|
