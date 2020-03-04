@@ -3,6 +3,7 @@ class RExtendedcapabilities < Formula
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-3/R-3.6.3.tar.gz"
   sha256 "89302990d8e8add536e12125ec591d6951022cf8475861b3690bc8bf1cefaa8f"
+  revision 1
 
   depends_on :x11 # X11 for Tcl-Tk
   depends_on "pkg-config" => :build
