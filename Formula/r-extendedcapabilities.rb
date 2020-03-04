@@ -18,6 +18,7 @@ class RExtendedcapabilities < Formula
   depends_on "texinfo"
   depends_on "icu4c"
   depends_on "texinfo"
+  depends_on "tcl-tk"
   depends_on "cairo-withx" # Cairo with X11 support
   depends_on "pango" => :optional
   depends_on :java => :optional
@@ -48,8 +49,8 @@ class RExtendedcapabilities < Formula
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
       "--with-tcltk", # Tcl-Tk support
-      "--with-tcl-config=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Tcl.framework/tclConfig.sh", # Point to the location of Tk, needs the Xcode command line tools and modification of TCL_INCLUDE_SPEC within the script
-      "--with-tk-config=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Tk.framework/tkConfig.sh" # Point to the location of Tk, needs the Xcode command line tools and modification of TCL_INCLUDE_SPEC within the script
+      "--with-tcl-config=/usr/local/opt/tcl-tk/lib/tclConfig.sh",
+      "--with-tk-config=/usr/local/opt/tcl-tk/lib/tkConfig.sh"
     ]
 
     if build.with? "java"
