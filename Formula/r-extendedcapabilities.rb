@@ -3,7 +3,7 @@ class RExtendedcapabilities < Formula
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-3/R-3.6.3.tar.gz"
   sha256 "89302990d8e8add536e12125ec591d6951022cf8475861b3690bc8bf1cefaa8f"
-  revision 2
+  revision 3
 
   depends_on :x11 # X11 for Tcl-Tk
   depends_on "pkg-config" => :build
@@ -49,8 +49,8 @@ class RExtendedcapabilities < Formula
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
       "--with-tcltk", # Tcl-Tk support
-      "--with-tcl-config=/System/Library/Frameworks/Tcl.framework/tclConfig.sh",
-      "--with-tk-config=/System/Library/Frameworks/Tk.framework/tkConfig.sh"
+      "--with-tcl-config=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Tcl.framework/tclConfig.s",
+      "--with-tk-config=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Tk.framework/tkConfig.s"
     ]
 
     if build.with? "java"
