@@ -3,7 +3,7 @@ class RExtendedcapabilities < Formula
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-3/R-3.6.3.tar.gz"
   sha256 "89302990d8e8add536e12125ec591d6951022cf8475861b3690bc8bf1cefaa8f"
-  revision 1
+  revision 2
 
   depends_on :x11 # X11 for Tcl-Tk
   depends_on "pkg-config" => :build
@@ -19,7 +19,6 @@ class RExtendedcapabilities < Formula
   depends_on "texinfo"
   depends_on "icu4c"
   depends_on "texinfo"
-  depends_on "tcl-tk"
   depends_on "cairo-withx" # Cairo with X11 support
   depends_on "pango" => :optional
   depends_on :java => :optional
@@ -28,9 +27,9 @@ class RExtendedcapabilities < Formula
   skip_clean "lib/R/bin"
 
   resource "gss" do
-    url "https://cloud.r-project.org/src/contrib/gss_2.1-9.tar.gz", :using => :nounzip
-    mirror "https://mirror.las.iastate.edu/CRAN/src/contrib/gss_2.1-9.tar.gz"
-    sha256 "2961fe61c1d3bb3fe7b8e1070d6fb1dfc5d71e0c6e8a6b7c46ff6b42867c4cf3"
+    url "https://cloud.r-project.org/src/contrib/gss_2.1-12.tar.gz", :using => :nounzip
+    mirror "https://mirror.las.iastate.edu/CRAN/src/contrib/gss_2.1-12.tar.gz"
+    sha256 "bcc92bb621671dbf94684e11a0b1c2b6c423f57d7d4ed8c7eeba4f4e51ef170b"
   end
 
   def install
@@ -50,8 +49,8 @@ class RExtendedcapabilities < Formula
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-blas=-L#{Formula["openblas"].opt_lib} -lopenblas",
       "--with-tcltk", # Tcl-Tk support
-      "--with-tcl-config=/usr/local/opt/tcl-tk/lib/tclConfig.sh",
-      "--with-tk-config=/usr/local/opt/tcl-tk/lib/tkConfig.sh"
+      "--with-tcl-config=/System/Library/Frameworks/Tcl.framework/tclConfig.sh",
+      "--with-tk-config=/System/Library/Frameworks/Tk.framework/tkConfig.sh"
     ]
 
     if build.with? "java"
