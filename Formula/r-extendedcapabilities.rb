@@ -58,8 +58,8 @@ class RExtendedcapabilities < Formula
       args << "--disable-java"
     end
 
-    # Help CRAN packages find gettext, readline, openblas and icu4c
-    ["gettext", "readline", "openblas", "icu4c"].each do |f|
+    # Help CRAN packages find gettext, readline, openblas, pcre2 and icu4c
+    ["gettext", "readline", "openblas","pcre2" ,"icu4c"].each do |f|
       ENV.append "CPPFLAGS", "-I#{Formula[f].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
     end
