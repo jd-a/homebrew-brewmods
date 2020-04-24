@@ -11,7 +11,7 @@ class RExtendedcapabilities < Formula
   depends_on "jpeg"
   depends_on "libpng"
   depends_on "libtiff"
-  depends_on "pcre"
+  depends_on "pcre2"
   depends_on "readline"
   depends_on "xz"
   depends_on "openblas"
