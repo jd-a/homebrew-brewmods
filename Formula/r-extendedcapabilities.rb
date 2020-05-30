@@ -3,6 +3,7 @@ class RExtendedcapabilities < Formula
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-4/R-4.0.0.tar.gz"
   sha256 "06beb0291b569978484eb0dcb5d2339665ec745737bdfb4e873e7a5a75492940"
+  revision 1
 
   depends_on :x11 # X11 for Tcl-Tk
   depends_on "pkg-config" => :build
@@ -26,9 +27,9 @@ class RExtendedcapabilities < Formula
   skip_clean "lib/R/bin"
 
   resource "gss" do
-    url "https://cloud.r-project.org/src/contrib/gss_2.1-12.tar.gz", :using => :nounzip
-    mirror "https://mirror.las.iastate.edu/CRAN/src/contrib/gss_2.1-12.tar.gz"
-    sha256 "bcc92bb621671dbf94684e11a0b1c2b6c423f57d7d4ed8c7eeba4f4e51ef170b"
+    url "https://cloud.r-project.org/src/contrib/gss_2.2-2.tar.gz", :using => :nounzip
+    mirror "https://mirror.las.iastate.edu/CRAN/src/contrib/gss_2.2-2.tar.gz"
+    sha256 "1da4da894378ee730cff9628e8b4d2a0d7dfa344b94e5bce6953e66723c21fe4"
   end
 
   def install
