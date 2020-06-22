@@ -28,7 +28,7 @@ class RExtendedcapabilities < Formula
   resource "gss" do
     url "https://cloud.r-project.org/src/contrib/gss_2.2-2.tar.gz", :using => :nounzip
     mirror "https://mirror.las.iastate.edu/CRAN/src/contrib/gss_2.2-2.tar.gz"
-    sha256 "d3bceab364da0876625e4097808b42512395fdf41292f4915ab1fd257c1bbe75"
+    sha256 "1da4da894378ee730cff9628e8b4d2a0d7dfa344b94e5bce6953e66723c21fe4"
   end
 
   def install
