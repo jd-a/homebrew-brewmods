@@ -1,9 +1,9 @@
 class RExtendedcapabilities < Formula
   desc "Software environment for statistical computing with extended capabilities"
   homepage "https://www.r-project.org/"
-  url "http://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz"
-  sha256 "d3bceab364da0876625e4097808b42512395fdf41292f4915ab1fd257c1bbe75"
-  revision 3
+  url "http://cran.r-project.org/src/base/R-4/R-4.0.3.tar.gz"
+  sha256 "09983a8a78d5fb6bc45d27b1c55f9ba5265f78fa54a55c13ae691f87c5bb9e0d"
+  # revision 1
 
   depends_on :x11 # X11 for Tcl-Tk
   depends_on "pkg-config" => :build
