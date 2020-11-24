@@ -15,9 +15,9 @@ class RExtendedcapabilities < Formula
   depends_on "readline"
   depends_on "xz"
 
-  ## SRF - Add additional R capabilities (comment out if undesired)
+  ## Add additional R capabilities (comment out if undesired)
   depends_on :java => :optional
-  depends_on :x11 # SRF - X11 necessary for tcl-tk since tk.h includes X11 headers. See section A.2.1 Tcl/Tk at < https://cran.r-project.org/doc/manuals/r-release/R-admin.html >
+  depends_on :x11 # X11 necessary for tcl-tk since tk.h includes X11 headers. See section A.2.1 Tcl/Tk at < https://cran.r-project.org/doc/manuals/r-release/R-admin.html >
   depends_on "texinfo" => :optional
   depends_on "libtiff" => :optional
   depends_on "cairo-withx" => :optional # Cairo must be build with with X11 support.
@@ -57,13 +57,13 @@ class RExtendedcapabilities < Formula
     args = [
       "--prefix=#{prefix}",
       "--enable-memory-profiling",
-      "--with-x", # SRF - Add X11 support (comment --without-x). Necessary for tcl-tk support.
+      "--with-x", # Add X11 support (comment --without-x). Necessary for tcl-tk support.
       #"--without-x",  # YT - If Homebrew's tcl-tk is to be used, '--with-x' cause an error 
       "--with-aqua",
       "--with-lapack",
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
-      "--with-tcltk", # SRF - Add tcl-tk support.
+      "--with-tcltk", # Add tcl-tk support.
       "--with-tcl-config=#{MacOS.sdk_path}/System/Library/Frameworks/Tcl.framework/tclConfig.sh",
       #"--with-tcl-config=#{tcl_lib}/tclConfig.sh", # YT - If homebrew's tcl-tk is to be used, this line should be uncommented
       #"--with-tk-config=#{tcl_lib}/tkConfig.sh" # YT - If homebrew's tcl-tk is to be used, this line should be uncommented
@@ -87,7 +87,7 @@ class RExtendedcapabilities < Formula
       args << "--disable-java"
     end
 
-    ## SRF - Add Cairo support
+    ## Add Cairo support
     if build.with? "cairo"
       args << "--with-cairo"
     else
@@ -100,7 +100,7 @@ class RExtendedcapabilities < Formula
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
     end
 
-    ## SRF - Help CRAN packages find icu4c (e.g. rJava)
+    ## Help CRAN packages find icu4c (e.g. rJava)
     if build.with? "icu4c"
       ENV.append "CPPFLAGS", "-I#{Formula["icu4c"].opt_include}"
       ENV.append "LDFLAGS", "-L#{Formula["icu4c"].opt_lib}"
