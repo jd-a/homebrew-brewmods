@@ -20,7 +20,7 @@ class RExtendedcapabilities < Formula
   depends_on :x11 # SRF - X11 necessary for tcl-tk since tk.h includes X11 headers. See section A.2.1 Tcl/Tk at < https://cran.r-project.org/doc/manuals/r-release/R-admin.html >
   depends_on "texinfo" => :optional
   depends_on "libtiff" => :optional
-  depends_on "sethrfore/r-srf/cairo" => :optional # SRF - Cairo must be build with with X11 support. Use brew install sethrfore/r-srf/cairo
+  depends_on "cairo-withx" => :optional # Cairo must be build with with X11 support.
   depends_on "icu4c" => :optional
   depends_on "pango" => :optional
   #depends_on "tcl-tk" 
