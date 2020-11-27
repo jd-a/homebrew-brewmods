@@ -3,7 +3,7 @@ class RExtendedcapabilities < Formula
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-4/R-4.0.3.tar.gz"
   sha256 "09983a8a78d5fb6bc45d27b1c55f9ba5265f78fa54a55c13ae691f87c5bb9e0d"
-  revision 1
+  revision 2
 
   depends_on "pkg-config" => :build
   depends_on "gcc" # for gfortran
@@ -16,7 +16,7 @@ class RExtendedcapabilities < Formula
   depends_on "xz"
 
   ## Add additional R capabilities (comment out if undesired)
-  depends_on :java => :optional
+  depends_on :openjdk@11 => :optional
   depends_on :x11 # X11 necessary for tcl-tk since tk.h includes X11 headers. See section A.2.1 Tcl/Tk at < https://cran.r-project.org/doc/manuals/r-release/R-admin.html >
   depends_on "texinfo" => :optional
   depends_on "libtiff" => :optional
