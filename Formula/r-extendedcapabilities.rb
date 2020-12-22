@@ -89,7 +89,7 @@ class RExtendedcapabilities < Formula
       args << "--disable-java"
     end
 
-    if build.with? "cairo"
+    if build.with? "cairo-withx"
       args << "--with-cairo"
     else
       args << "--without-cairo"
