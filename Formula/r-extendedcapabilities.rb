@@ -3,7 +3,7 @@ class RExtendedcapabilities < Formula
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-4/R-4.0.3.tar.gz"
   sha256 "09983a8a78d5fb6bc45d27b1c55f9ba5265f78fa54a55c13ae691f87c5bb9e0d"
-  revision 3
+  revision 4
 
   depends_on "pkg-config" => :build
   depends_on "gcc" # for gfortran
