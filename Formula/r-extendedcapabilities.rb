@@ -28,7 +28,7 @@ class RExtendedcapabilities < Formula
   depends_on "libtiff" => :optional
   depends_on "icu4c" => :optional
   # depends_on "pango" => :optional
-  depends_on "caskroom/cask/tcl" # Use ActiveState tcl-tk
+  depends_on "homebrew/cask/tcl" # Use ActiveState tcl-tk
 
   ## Needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin", "lib/R/doc"
