@@ -3,7 +3,7 @@ class RExtendedcapabilities < Formula
   homepage "https://www.r-project.org/"
   url "http://cran.r-project.org/src/base/R-4/R-4.0.3.tar.gz"
   sha256 "09983a8a78d5fb6bc45d27b1c55f9ba5265f78fa54a55c13ae691f87c5bb9e0d"
-  revision 5
+  revision 6
 
   depends_on "pkg-config" => :build
   depends_on "gcc" # for gfortran
@@ -13,7 +13,6 @@ class RExtendedcapabilities < Formula
   depends_on "pcre2"
   depends_on "readline"
   depends_on "xz"
-
 
   depends_on "freetype"
   depends_on "fontconfig"
@@ -29,7 +28,7 @@ class RExtendedcapabilities < Formula
   depends_on "libtiff" => :optional
   depends_on "icu4c" => :optional
   # depends_on "pango" => :optional
-  depends_on "tcl-tk" # Use Homebrew tcl-tk
+  depends_on cask: "tcl" # Use ActiveState tcl-tk
 
   ## Needed to preserve executable permissions on files without shebangs
   skip_clean "lib/R/bin", "lib/R/doc"
@@ -53,25 +52,27 @@ class RExtendedcapabilities < Formula
     #end
 
     ## SRF - Add Tex to path, uncomment if mactex is installed and desired
-    ENV.append_path "PATH", "/Library/TeX/texbin"
+    #ENV.append_path "PATH", "/Library/TeX/texbin"
 
     ## YT - If homebrew's tcl-tk is to be used, this line should be uncommented
-    tcl_lib = Formula["tcl-tk"].opt_lib
+    #tcl_lib = Formula["tcl-tk"].opt_lib
     
     args = [
       "--prefix=#{prefix}",
       "--enable-memory-profiling",
-      #"--with-x", # Add X11 support (comment --without-x). Necessary for Apple tcl-tk support.
-      "--without-x", # YT - If Homebrew's tcl-tk is to be used, '--with-x' cause an error.
+      "--with-x", # Add X11 support (comment --without-x). Necessary for Apple tcl-tk support.
+      #"--without-x", # YT - If Homebrew's tcl-tk is to be used, '--with-x' cause an error.
       "--with-aqua",
       "--with-lapack",
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--with-tcltk", # Add tcl-tk support.
-      "--with-tcl-config=#{tcl_lib}/tclConfig.sh", # YT - If homebrew's tcl-tk is to be used, this line should be uncommented
-      "--with-tk-config=#{tcl_lib}/tkConfig.sh", # YT - If homebrew's tcl-tk is to be used, this line should be uncommented
+      "--with-tcl-config=/Library/Frameworks/Tcl.framework/tclConfig.sh", # ActiveState Tcl
+      "--with-tk-config=/Library/Frameworks/Tk.framework/tkConfig.sh" # ActiveState Tk
       #"--with-tcl-config=#{MacOS.sdk_path}/System/Library/Frameworks/Tcl.framework/tclConfig.sh", # If Apple's tcl-tk is to be used, this line should be uncommented
-      #"--with-tk-config=#{MacOS.sdk_path}/System/Library/Frameworks/Tk.framework/tkConfig.sh" # If Apple's tcl-tk is to be used, this line should be uncommented
+      #"--with-tk-config=#{MacOS.sdk_path}/System/Library/Frameworks/Tk.framework/tkConfig.sh", # If Apple's tcl-tk is to be used, this line should be uncommented
+      #"--with-tcl-config=#{tcl_lib}/tclConfig.sh", # YT - If homebrew's tcl-tk is to be used, this line should be uncommented
+      #"--with-tk-config=#{tcl_lib}/tkConfig.sh" # YT - If homebrew's tcl-tk is to be used, this line should be uncommented
     ]
     
     ## Add supporting flags for optional packages
