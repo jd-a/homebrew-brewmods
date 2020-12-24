@@ -61,8 +61,8 @@ class RExtendedcapabilities < Formula
     args = [
       "--prefix=#{prefix}",
       "--enable-memory-profiling",
-      "--with-x", # Add X11 support (comment --without-x). Necessary for tcl-tk support.
-      #"--without-x", # YT - If Homebrew's tcl-tk is to be used, '--with-x' cause an error.
+      #"--with-x", # Add X11 support (comment --without-x). Necessary for Apple tcl-tk support.
+      "--without-x", # YT - If Homebrew's tcl-tk is to be used, '--with-x' cause an error.
       "--with-aqua",
       "--with-lapack",
       "--enable-R-shlib",
