@@ -28,7 +28,7 @@ class CairoWithx < Formula
 
   depends_on "fontconfig"
   depends_on "freetype"
-  depends_on "glib"
+  # depends_on "glib" # remove to solve issues compiling R, remove --enable-gobject=yes
   depends_on "libpng"
   depends_on "lzo"
   depends_on "pixman"
@@ -39,7 +39,6 @@ class CairoWithx < Formula
     args = %W[
       --disable-dependency-tracking
       --prefix=#{prefix}
-      --enable-gobject=yes
       --enable-svg=yes
       --enable-tee=yes
       --enable-quartz-image
