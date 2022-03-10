@@ -1,8 +1,8 @@
 class RExtendedcapabilities < Formula
   desc "Software environment for statistical computing with extended capabilities"
   homepage "https://www.r-project.org/"
-  url "http://cran.r-project.org/src/base/R-4/R-4.1.2.tar.gz"
-  sha256 "2036225e9f7207d4ce097e54972aecdaa8b40d7d9911cd26491fac5a0fab38af"
+  url "http://cran.r-project.org/src/base/R-4/R-4.1.3.tar.gz"
+  sha256 "15ff5b333c61094060b2a52e9c1d8ec55cc42dd029e39ca22abdaa909526fed6"
 
   depends_on "pkg-config" => :build
   depends_on "gcc" # for gfortran
