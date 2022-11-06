@@ -4,7 +4,7 @@ class R < Formula
   url "https://cran.r-project.org/src/base/R-4/R-4.2.2.tar.gz"
   sha256 "0ff62b42ec51afa5713caee7c4fde7a0c45940ba39bef8c5c9487fef0c953df5"
   license "GPL-2.0-or-later"
-  #revision 1
+  revision 2
 
   depends_on "pkg-config" => :build
   depends_on "fontconfig"
@@ -24,8 +24,8 @@ class R < Formula
   depends_on "libtiff" => :optional
   depends_on "openblas" => :optional
   depends_on "openjdk" => :optional
-  depends_on "sethrfore/r-srf/cairo-x11" => :optional
-  depends_on "sethrfore/r-srf/tcl-tk-x11" => :optional
+  depends_on "jd-a/brewmods/cairo-x11" => :optional
+  depends_on "jd-a/brewmods/tcl-tk-x11" => :optional
   depends_on "texinfo" => :optional
 
   ## Needed to preserve executable permissions on files without shebangs
