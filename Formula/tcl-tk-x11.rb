@@ -3,7 +3,7 @@ class TclTkX11 < Formula
   homepage "https://www.tcl-lang.org"
   url "https://downloads.sourceforge.net/project/tcl/Tcl/8.6.13/tcl8.6.13-src.tar.gz"
   mirror "https://fossies.org/linux/misc/tcl8.6.13-src.tar.gz"
-  sha256 "2e65fa069a23365440a3c56c556b8673b5e32a283800d8d9b257e3f584ce0675"
+  sha256 "43a1fae7412f61ff11de2cfd05d28cfc3a73762f354a417c62370a54e2caf066"
   license "TCL"
 
   ## Original formula credited to https://github.com/agiliopadua/homebrew-extras
@@ -15,7 +15,7 @@ class TclTkX11 < Formula
   resource "tk" do
     url "https://downloads.sourceforge.net/project/tcl/Tcl/8.6.13/tk8.6.13-src.tar.gz"
     mirror "https://fossies.org/linux/misc/tk8.6.13-src.tar.gz"
-    sha256 "43a1fae7412f61ff11de2cfd05d28cfc3a73762f354a417c62370a54e2caf066"
+    sha256 "2e65fa069a23365440a3c56c556b8673b5e32a283800d8d9b257e3f584ce0675"
   end
 
   resource "critcl" do
