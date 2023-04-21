@@ -1,10 +1,10 @@
 class R < Formula
   desc "Software environment for statistical computing"
   homepage "https://www.r-project.org/"
-  url "https://cran.r-project.org/src/base/R-4/R-4.2.3.tar.gz"
-  sha256 "55e4a9a6d43be314e2c03d0266a6fa5444afdce50b303bfc3b82b3979516e074"
+  url "https://cran.r-project.org/src/base/R-4/R-4.3.0.tar.gz"
+  sha256 "45dcc48b6cf27d361020f77fde1a39209e997b81402b3663ca1c010056a6a609"
   license "GPL-2.0-or-later"
-  revision 3
+  revision 1
 
   depends_on "pkg-config" => :build
   depends_on "fontconfig"
@@ -36,11 +36,11 @@ class R < Formula
     # https://bugs.r-project.org/bugzilla/show_bug.cgi?id=18024
     ENV.append "CFLAGS", "-Wno-implicit-function-declaration"
     # Set SDK 12
-    ENV.store "CMAKE_LIBRARY_PATH", "/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries"
-    ENV.store "CMAKE_INCLUDE_PATH", "/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers"
-    ENV.store "HOMEBREW_SDKROOT", "/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk"
-    ENV.store "HOMEBREW_ISYSTEM_PATHS", "/usr/local/include:/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers"
-    ENV.store "HOMEBREW_LIBRARY_PATHS", "/usr/local/lib:/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries"
+    #ENV.store "CMAKE_LIBRARY_PATH", "/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries"
+    #ENV.store "CMAKE_INCLUDE_PATH", "/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers"
+    #ENV.store "HOMEBREW_SDKROOT", "/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk"
+    #ENV.store "HOMEBREW_ISYSTEM_PATHS", "/usr/local/include:/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Headers"
+    #ENV.store "HOMEBREW_LIBRARY_PATHS", "/usr/local/lib:/Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/System/Library/Frameworks/OpenGL.framework/Versions/Current/Libraries"
     
     args = [
       "--prefix=#{prefix}",
