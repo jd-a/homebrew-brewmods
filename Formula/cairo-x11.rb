@@ -4,7 +4,7 @@ class CairoX11 < Formula
   url "https://cairographics.org/releases/cairo-1.18.0.tar.xz"
   sha256 "243a0736b978a33dee29f9cca7521733b78a65b5418206fef7bd1c3d4cf10b64"
   license any_of: ["LGPL-2.1-only", "MPL-1.1"]
-  revision 4
+  revision 1
 
   # bottle do
   #   sha256 "45f0b6aa6d76fa7806e1eeb066d6737033da3de74ac247a27735ff3a29b1b62b" => :big_sur
