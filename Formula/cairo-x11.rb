@@ -6,11 +6,6 @@ class CairoX11 < Formula
   license any_of: ["LGPL-2.1-only", "MPL-1.1"]
   head "https://gitlab.freedesktop.org/cairo/cairo.git", branch: "master"
 
-  livecheck do
-    url "https://cairographics.org/releases/?C=M&O=D"
-    regex(%r{href=(?:["']?|.*?/)cairo[._-]v?(\d+\.\d*[02468](?:\.\d+)*)\.t}i)
-  end
-
   bottle do
     sha256 cellar: :any, arm64_sonoma:   "06c6aaadeca8f79c27867c56b8bb90fa9a7d00f84862cee7c837b611ffb8dbbc"
     sha256 cellar: :any, arm64_ventura:  "e71518b5feb9f2c6a91152948fb8bb0492d7677581d9cd22f72e1a53e89753bb"
