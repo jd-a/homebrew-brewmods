@@ -1,8 +1,8 @@
 class CairoX11 < Formula
   desc "Vector graphics library with cross-device output support"
   homepage "https://cairographics.org/"
-  url "https://cairographics.org/snapshots/cairo-1.17.4.tar.xz"
-  sha256 "74b24c1ed436bbe87499179a3b27c43f4143b8676d8ad237a6fa787401959705"
+  url "https://cairographics.org/releases/cairo-1.18.0.tar.xz"
+  sha256 "243a0736b978a33dee29f9cca7521733b78a65b5418206fef7bd1c3d4cf10b64"
   license any_of: ["LGPL-2.1-only", "MPL-1.1"]
   revision 4
 
