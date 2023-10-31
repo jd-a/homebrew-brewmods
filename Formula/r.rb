@@ -4,7 +4,7 @@ class R < Formula
   url "https://cran.r-project.org/src/base/R-4/R-4.3.2.tar.gz"
   sha256 "b3f5760ac2eee8026a3f0eefcb25b47723d978038eee8e844762094c860c452a"
   license "GPL-2.0-or-later"
-  revision 1
+  #revision 1
 
   depends_on "pkg-config" => :build
   depends_on "fontconfig"
@@ -23,7 +23,7 @@ class R < Formula
   depends_on "libtiff" => :optional
   depends_on "openblas" => :optional
   depends_on "openjdk" => :optional
-  depends_on "jd-a/brewmods/cairo-x11" => :optional
+  depends_on "cairo" => :optional
   depends_on "jd-a/brewmods/tcl-tk-x11" => :optional
   depends_on "texinfo" => :optional
 
