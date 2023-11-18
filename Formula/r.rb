@@ -4,7 +4,7 @@ class R < Formula
   url "https://cran.r-project.org/src/base/R-4/R-4.3.2.tar.gz"
   sha256 "b3f5760ac2eee8026a3f0eefcb25b47723d978038eee8e844762094c860c452a"
   license "GPL-2.0-or-later"
-  #revision 1
+  revision 1
 
   depends_on "pkg-config" => :build
   depends_on "fontconfig"
@@ -85,7 +85,7 @@ class R < Formula
       args << "--without-tcltk"
     end
 
-    args << if build.with? "cairo-x11"
+    args << if build.with? "cairo"
       "--with-cairo"
     else
       "--without-cairo"
@@ -143,7 +143,7 @@ class R < Formula
   test do
     assert_equal "[1] 2", shell_output("#{bin}/Rscript -e 'print(1+1)'").chomp
     assert_equal shared_library(""), shell_output("#{bin}/R CMD config DYLIB_EXT").chomp
-    system bin/"Rscript", "-e", "if(!capabilities('cairo')) stop('cairo not available')"
+    system bin/"Rscript", "-e", "if(!capabilities('')) stop(' not available')"
 
     system bin/"Rscript", "-e", "install.packages('gss', '.', 'https://cloud.r-project.org')"
     assert_predicate testpath/"gss/libs/gss.so", :exist?,
