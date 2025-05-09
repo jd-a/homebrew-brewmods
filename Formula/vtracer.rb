@@ -9,10 +9,9 @@ class Vtracer < Formula
 
   def install
     system "cargo", "install", *std_cargo_args
+  end
 
-    generate_completions_from_executable(bin/"vtracer", "completions")
-    (share/"elvish/lib/rip.elv").write Utils.safe_popen_read(bin/"vtracer", "completions", "elvish")
-    (share/"powershell/completions/_rip.ps1").write Utils.safe_popen_read(bin/"vtracer", "completions", "powershell")
-    (share/"nu/completions/rip.nu").write Utils.safe_popen_read(bin/"vtracer", "completions", "nushell")
+  test do
+    system "#{bin}/vtracer", "--version"
   end
 end
