@@ -8,7 +8,7 @@ class Vtracer < Formula
   depends_on "rust" => :build
 
   def install
-    cd "cli" do
+    cd "cmdapp" do
       system "cargo", "install", *std_cargo_args
     end
   end
