@@ -1,4 +1,4 @@
-class Rip2 < Formula
+class Vtracer < Formula
   desc "Raster to vector graphics converter built on top of visioncortex"
   homepage "https://github.com/visioncortex/vtracer"
   url "https://github.com/visioncortex/vtracer/archive/refs/tags/0.6.4.zip"
