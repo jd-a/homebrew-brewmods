@@ -10,20 +10,29 @@ class Grass < Formula
   depends_on "gdal"
   depends_on "proj"
   depends_on "postgresql@17"
-  depends_on "wxmac" # for GUI
   depends_on "python@3.13"
 
-  def install
-    args = std_cmake_args + %W[
-      -DENABLE_GUI=ON
-      -DWITH_PYTHON=ON
-      -DWITH_POSTGRES=ON
-    ]
-    mkdir "build" do
-      system "cmake", "..", *args, "-GNinja"
-      system "ninja", "install"
-    end
-  end
+def install
+  args = %W[
+    --prefix=#{prefix}
+    --with-cxx
+    --with-python=#{Formula["python@3.13"].opt_bin}/python3
+    --with-proj-share=#{Formula["proj"].opt_share}/proj
+    --with-postgres-includes=#{Formula["postgresql@17"].opt_include}
+    --with-postgres-libs=#{Formula["postgresql@17"].opt_lib}
+    --with-postgres=yes
+    --with-sqlite
+    --enable-largefile
+    --enable-shared
+    --with-gdal=#{Formula["gdal"].opt_bin}/gdal-config
+    --with-geos
+  ]
+
+  system "./configure", *args
+  system "make", "-j#{ENV.make_jobs}"
+  system "make", "install"
+end
+
 
   test do
     system "#{bin}/grass", "--version"
