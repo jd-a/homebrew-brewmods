@@ -1,8 +1,8 @@
 class Vtracer < Formula
   desc "Raster to vector graphics converter built on top of visioncortex"
   homepage "https://github.com/visioncortex/vtracer"
-  url "https://github.com/visioncortex/vtracer/archive/refs/tags/0.6.4.zip"
-  sha256 "20010bd11eb56a1f72e77da12c1fc03401533048747a3dd13b13f4e67e93d596"
+  url "https://github.com/visioncortex/vtracer/archive/refs/tags/0.6.4.tar.gz"
+  sha256 "a4b554afe0384ddbdb5f96dde2d2e6f412493ae990acc32e0d71c4f8b63d8ba4"
   license "MIT"
 
   depends_on "rust" => :build
@@ -14,6 +14,6 @@ class Vtracer < Formula
   end
 
   test do
-    system "#{bin}/vtracer", "--version"
+    system bin/"vtracer", "--version"
   end
 end
