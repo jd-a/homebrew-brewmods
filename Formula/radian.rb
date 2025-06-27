@@ -1,10 +1,10 @@
 class Radian < Formula
   include Language::Python::Virtualenv
 
-  desc "A 21st century R console"
+  desc "R console for the 21st century"
   homepage "https://github.com/randy3k/radian"
-  url "https://github.com/randy3k/radian/archive/refs/tags/v0.6.15.zip"
-  sha256 "24c63b2b3b592996cee7d82ad1f6ff022e4f4a6f2aec0d322a9197de96c46b80"
+  url "https://github.com/randy3k/radian/archive/refs/tags/v0.6.15.tar.gz"
+  sha256 "ae672d840691b0f2304b6a507454325444ffee3d91e34dadfdb8a2090e124858"
   license "MIT"
 
   depends_on "python@3.13"
@@ -29,7 +29,7 @@ class Radian < Formula
     sha256 "491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6"
   end
 
-  resource "prompt_toolkit" do
+  resource "prompt-toolkit" do
     url "https://files.pythonhosted.org/packages/bb/6e/9d084c929dfe9e3bfe0c6a47e31f78a25c54627d64a66e884a8bf5474f1c/prompt_toolkit-3.0.51.tar.gz"
     sha256 "931a162e3b27fc90c86f1b48bb1fb2c528c2761475e57c9c06de13311c7b54ed"
   end
@@ -54,6 +54,6 @@ class Radian < Formula
   end
 
   test do
-    system "#{bin}/radian", "--version"
+    system bin/"radian", "--version"
   end
 end
