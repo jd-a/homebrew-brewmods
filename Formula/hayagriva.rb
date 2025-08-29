@@ -3,7 +3,7 @@ class Hayagriva < Formula
   homepage "https://github.com/typst/hayagriva"
   url "https://github.com/typst/hayagriva/archive/refs/tags/v0.8.1.zip"
   sha256 "20316adfebd9a5d70a8f8ee784f4bff707b9e84287cef0b5d0c687befba79fea"
-  license all_of: ["MIT", "Apache-2.0"]
+  license any_of: ["MIT", "Apache-2.0"]
 
   depends_on "rust" => :build
 
