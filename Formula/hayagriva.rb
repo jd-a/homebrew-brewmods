@@ -1,4 +1,4 @@
-class Vtracer < Formula
+class Hayagriva < Formula
   desc "Rusty bibliography management for Typst"
   homepage "https://github.com/typst/hayagriva"
   url "https://github.com/typst/hayagriva/archive/refs/tags/v0.8.1.zip"
