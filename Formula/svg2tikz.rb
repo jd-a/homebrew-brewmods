@@ -8,6 +8,13 @@ class Svg2tikz < Formula
   license "GPL-2.0-or-later"
 
   depends_on "python@3.13"
+  depends_on "pillow"
+  depends_on "py3cairo"
+  depends_on "pygobject3"
+  depends_on "numpy"
+  depends_on "libxml2"
+  depends_on "libxslt"
+  depends_on "pkg-config" => :build
 
   resource "lxml" do
     url "https://files.pythonhosted.org/packages/8f/bd/f9d01fd4132d81c6f43ab01983caea69ec9614b913c290a26738431a015d/lxml-6.0.1.tar.gz"
@@ -24,24 +31,9 @@ class Svg2tikz < Formula
     sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
   end
 
-  resource "numpy" do
-    url "https://files.pythonhosted.org/packages/d0/19/95b3d357407220ed24c139018d2518fab0a61a948e68286a25f1a4d049ff/numpy-2.3.3.tar.gz"
-    sha256 "ddc7c39727ba62b80dfdbedf400d1c10ddfa8eefbd7ec8dcb118be8b56d31029"
-  end
-
   resource "cssselect" do
     url "https://files.pythonhosted.org/packages/72/0a/c3ea9573b1dc2e151abfe88c7fe0c26d1892fe6ed02d0cdb30f0d57029d5/cssselect-1.3.0.tar.gz"
     sha256 "57f8a99424cfab289a1b6a816a43075a4b00948c86b4dcf3ef4ee7e15f7ab0c7"
-  end
-
-  resource "Pillow" do
-    url "https://files.pythonhosted.org/packages/f3/0d/d0d6dea55cd152ce3d6767bb38a8fc10e33796ba4ba210cbab9354b6d238/pillow-11.3.0.tar.gz"
-    sha256 "3828ee7586cd0b2091b6209e5ad53e20d0649bbe87164a459d0676e035e8f523"
-  end
-
-  resource "PyGObject" do
-    url "https://files.pythonhosted.org/packages/4a/b2/24c2cda5b0cc76e687672738f5b388dcfc3a69d4b83584429dd9846a3341/pygobject-3.54.2.tar.gz"
-    sha256 "03cffeb49d8a1879b621d8f606ac904218019a0ae699b1cd3780a8ee611e696b"
   end
 
   resource "pyparsing" do
@@ -62,11 +54,6 @@ class Svg2tikz < Formula
   resource "tinycss2" do
     url "https://files.pythonhosted.org/packages/7a/fd/7a5ee21fd08ff70d3d33a5781c255cbe779659bd03278feb98b19ee550f4/tinycss2-1.4.0.tar.gz"
     sha256 "10c0972f6fc0fbee87c3edb76549357415e94548c1ae10ebccdea16fb404a9b7"
-  end
-
-  resource "pycairo" do
-    url "https://files.pythonhosted.org/packages/40/d9/412da520de9052b7e80bfc810ec10f5cb3dbfa4aa3e23c2820dc61cdb3d0/pycairo-1.28.0.tar.gz"
-    sha256 "26ec5c6126781eb167089a123919f87baa2740da2cca9098be8b3a6b91cc5fbc"
   end
 
   resource "webencodings" do
