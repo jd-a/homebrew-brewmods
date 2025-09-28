@@ -1,8 +1,8 @@
 class Hayagriva < Formula
   desc "Rusty bibliography management for Typst"
   homepage "https://github.com/typst/hayagriva"
-  url "https://github.com/typst/hayagriva/archive/refs/tags/v0.8.1.zip"
-  sha256 "20316adfebd9a5d70a8f8ee784f4bff707b9e84287cef0b5d0c687befba79fea"
+  url "https://github.com/typst/hayagriva/archive/refs/tags/v0.9.1.zip"
+  sha256 "06bd3c33fe9f150459e1741f5f7a6b8232170b5516f7dd9832c5c1c2264a0371"
   license any_of: ["MIT", "Apache-2.0"]
 
   depends_on "rust" => :build
