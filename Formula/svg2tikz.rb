@@ -3,11 +3,12 @@ class Svg2tikz < Formula
 
   desc "Tool for converting SVG graphics to TikZ/PGF code"
   homepage "https://xyz2tex.github.io/svg2tikz/"
-  url "https://github.com/xyz2tex/svg2tikz/archive/refs/tags/v3.3.2.tar.gz"
-  sha256 "e9754c38dd78ce142e83eb3779e71686b1b22ab54e4d7953224279c7f578bc15"
+  url "https://github.com/xyz2tex/svg2tikz/archive/refs/tags/v3.3.3.tar.gz"
+  sha256 "ad9c7ed8cf6adf1e01a5c5ca3b191ca52754aced7e7ab51ecec389a95dc3e335"
   license "GPL-2.0-or-later"
+  revision 1
 
-  depends_on "python@3.13"
+  depends_on "python@3.14"
   depends_on "pillow"
   depends_on "py3cairo"
   depends_on "pygobject3"
@@ -17,8 +18,8 @@ class Svg2tikz < Formula
   depends_on "pkg-config" => :build
 
   resource "lxml" do
-    url "https://files.pythonhosted.org/packages/8f/bd/f9d01fd4132d81c6f43ab01983caea69ec9614b913c290a26738431a015d/lxml-6.0.1.tar.gz"
-    sha256 "2b3a882ebf27dd026df3801a87cf49ff791336e0f94b0fad195db77e01240690"
+    url "https://files.pythonhosted.org/packages/aa/88/262177de60548e5a2bfc46ad28232c9e9cbde697bd94132aeb80364675cb/lxml-6.0.2.tar.gz"
+    sha256 "cd79f3367bd74b317dda655dc8fcfa304d9eb6e4fb06b7168c5cf27f96e0cd62"
   end
 
   resource "inkex" do
@@ -37,8 +38,8 @@ class Svg2tikz < Formula
   end
 
   resource "pyparsing" do
-    url "https://files.pythonhosted.org/packages/98/c9/b4594e6a81371dfa9eb7a2c110ad682acf985d96115ae8b25a1d63b4bf3b/pyparsing-3.2.4.tar.gz"
-    sha256 "fff89494f45559d0f2ce46613b419f632bbb6afbdaed49696d322bcf98a58e99"
+    url "https://files.pythonhosted.org/packages/f2/a5/181488fc2b9d093e3972d2a472855aae8a03f000592dbfce716a512b3359/pyparsing-3.2.5.tar.gz"
+    sha256 "2df8d5b7b2802ef88e8d016a2eb9c7aeaa923529cd251ed0fe4608275d4105b6"
   end
 
   resource "pySerial" do
