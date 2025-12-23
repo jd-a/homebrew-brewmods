@@ -4,7 +4,7 @@ class Grass < Formula
   url "https://grass.osgeo.org/grass84/source/grass-8.4.2.tar.gz"
   sha256 "066d5a612da8b00b9d62ea9e91022b8082b9a65b18549b4719078fd0cb26e142"
   license "GPL-2.0-or-later"
-  revision 2
+  revision 3
 
   depends_on "bison" => :build
   depends_on "flex" => :build
@@ -40,7 +40,7 @@ class Grass < Formula
 
     openblas = Formula["openblas"]
     libomp   = Formula["libomp"]
-    pg       = Formula["postgresql@18"]
+    pg       = Formula["postgresql@17"]
 
     args = %W[
       --prefix=#{prefix}
