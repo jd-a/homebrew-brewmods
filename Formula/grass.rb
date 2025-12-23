@@ -4,7 +4,7 @@ class Grass < Formula
   url "https://grass.osgeo.org/grass84/source/grass-8.4.2.tar.gz"
   sha256 "066d5a612da8b00b9d62ea9e91022b8082b9a65b18549b4719078fd0cb26e142"
   license "GPL-2.0-or-later"
-  revision 1
+  revision 2
 
   depends_on "bison" => :build
   depends_on "flex" => :build
@@ -96,8 +96,8 @@ class Grass < Formula
       --with-sqlite-includes=#{Formula["sqlite"].opt_include}
       --with-sqlite-libs=#{Formula["sqlite"].opt_lib}
 
-      --with-tiff-includes=#{Formula["tiff"].opt_include}
-      --with-tiff-libs=#{Formula["tiff"].opt_lib}
+      --with-tiff-includes=#{Formula["libtiff"].opt_include}
+      --with-tiff-libs=#{Formula["libtiff"].opt_lib}
 
       --with-zstd
       --with-zstd-includes=#{Formula["zstd"].opt_include}
