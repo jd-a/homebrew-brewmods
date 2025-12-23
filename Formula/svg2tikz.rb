@@ -3,10 +3,9 @@ class Svg2tikz < Formula
 
   desc "Tool for converting SVG graphics to TikZ/PGF code"
   homepage "https://xyz2tex.github.io/svg2tikz/"
-  url "https://github.com/xyz2tex/svg2tikz/archive/refs/tags/v3.3.3.tar.gz"
-  sha256 "ad9c7ed8cf6adf1e01a5c5ca3b191ca52754aced7e7ab51ecec389a95dc3e335"
+  url "https://github.com/xyz2tex/svg2tikz/archive/refs/tags/v3.3.4.tar.gz"
+  sha256 "2bf5f3456aa7969ad8a785c7a4dcab94a0b05e7b286a1a96ea26bd960b60e20e"
   license "GPL-2.0-or-later"
-  revision 1
 
   depends_on "python@3.14"
   depends_on "pillow"
@@ -38,8 +37,8 @@ class Svg2tikz < Formula
   end
 
   resource "pyparsing" do
-    url "https://files.pythonhosted.org/packages/f2/a5/181488fc2b9d093e3972d2a472855aae8a03f000592dbfce716a512b3359/pyparsing-3.2.5.tar.gz"
-    sha256 "2df8d5b7b2802ef88e8d016a2eb9c7aeaa923529cd251ed0fe4608275d4105b6"
+    url "https://files.pythonhosted.org/packages/33/c1/1d9de9aeaa1b89b0186e5fe23294ff6517fce1bc69149185577cd31016b2/pyparsing-3.3.1.tar.gz"
+    sha256 "47fad0f17ac1e2cad3de3b458570fbc9b03560aa029ed5e16ee5554da9a2251c"
   end
 
   resource "pySerial" do
@@ -53,8 +52,8 @@ class Svg2tikz < Formula
   end
 
   resource "tinycss2" do
-    url "https://files.pythonhosted.org/packages/7a/fd/7a5ee21fd08ff70d3d33a5781c255cbe779659bd03278feb98b19ee550f4/tinycss2-1.4.0.tar.gz"
-    sha256 "10c0972f6fc0fbee87c3edb76549357415e94548c1ae10ebccdea16fb404a9b7"
+    url "https://files.pythonhosted.org/packages/a3/ae/2ca4913e5c0f09781d75482874c3a95db9105462a92ddd303c7d285d3df2/tinycss2-1.5.1.tar.gz"
+    sha256 "d339d2b616ba90ccce58da8495a78f46e55d4d25f9fd71dfd526f07e7d53f957"
   end
 
   resource "webencodings" do
