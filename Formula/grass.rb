@@ -4,6 +4,7 @@ class Grass < Formula
   url "https://grass.osgeo.org/grass84/source/grass-8.4.2.tar.gz"
   sha256 "066d5a612da8b00b9d62ea9e91022b8082b9a65b18549b4719078fd0cb26e142"
   license "GPL-2.0-or-later"
+  revision 1
 
   depends_on "bison" => :build
   depends_on "flex" => :build
@@ -23,12 +24,12 @@ class Grass < Formula
   depends_on "proj"
   depends_on "readline"
   depends_on "sqlite"
-  depends_on "tiff"
+  depends_on "libtiff"
   depends_on "zstd"
   depends_on "zlib"
 
-  # For PostgreSQL 17 instead, change this line to: depends_on "postgresql@17"
-  depends_on "postgresql@18"  # provides libpq headers/libs too :contentReference[oaicite:5]{index=5}
+  # For PostgreSQL 18 instead, change this line to: depends_on "postgresql@18"
+  depends_on "postgresql@17"  # provides libpq headers/libs too :contentReference[oaicite:5]{index=5}
 
   depends_on "python@3.14"
 
