@@ -10,7 +10,7 @@ class Arf < Formula
   def install
     # Build and install
     system "cargo", "install",
-           *std_cargo_args
+           *std_cargo_args(path: "crates/arf-console")
   end
 
   test do
