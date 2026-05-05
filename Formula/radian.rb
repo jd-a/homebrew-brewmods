@@ -6,9 +6,10 @@ class Radian < Formula
   url "https://github.com/randy3k/radian/archive/refs/tags/v0.6.16.tar.gz"
   sha256 "5b3e528e7fcde6e7a14e17d4f0cc412fba0ed5201cad4f3528a777ba084d354a"
   license "MIT"
-  revision 1
+  revision 3
 
   depends_on "python@3.14"
+  depends_on "lief"
 
   resource "rchitect" do
     url "https://files.pythonhosted.org/packages/7e/51/88eb66c52322bc4d638de9c9a817b6e6e825a9353c7f63b9f9354631096b/rchitect-0.4.10.tar.gz"
@@ -48,11 +49,6 @@ class Radian < Formula
   resource "jedi" do
     url "https://files.pythonhosted.org/packages/46/b7/a3635f6a2d7cf5b5dd98064fc1d5fbbafcb25477bcea204a3a92145d158b/jedi-0.20.0.tar.gz"
     sha256 "c3f4ccbd276696f4b19c54618d4fb18f9fc24b0aef02acf704b23f487daa1011"
-  end
-
-  resource "lief" do
-    url "https://files.pythonhosted.org/packages/d9/b9/6b27bff4676de0db4231ca585ed35bc6e13f5430c1bbf0ad0e9d2e9f552f/lief-0.17.6.tar.gz"
-    sha256 "c2164243f152e82c49b0ccd606155b758644f4b1ee221f0dbd4da055469a922f"
   end
 
   def install
