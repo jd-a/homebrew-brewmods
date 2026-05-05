@@ -6,10 +6,9 @@ class Radian < Formula
   url "https://github.com/randy3k/radian/archive/refs/tags/v0.6.16.tar.gz"
   sha256 "5b3e528e7fcde6e7a14e17d4f0cc412fba0ed5201cad4f3528a777ba084d354a"
   license "MIT"
-  revision 3
+  revision 4
 
   depends_on "python@3.14"
-  depends_on "lief"
 
   resource "rchitect" do
     url "https://files.pythonhosted.org/packages/7e/51/88eb66c52322bc4d638de9c9a817b6e6e825a9353c7f63b9f9354631096b/rchitect-0.4.10.tar.gz"
@@ -49,6 +48,22 @@ class Radian < Formula
   resource "jedi" do
     url "https://files.pythonhosted.org/packages/46/b7/a3635f6a2d7cf5b5dd98064fc1d5fbbafcb25477bcea204a3a92145d158b/jedi-0.20.0.tar.gz"
     sha256 "c3f4ccbd276696f4b19c54618d4fb18f9fc24b0aef02acf704b23f487daa1011"
+  end
+
+  on_macos do
+    on_arm do
+      resource "lief" do
+        url "https://files.pythonhosted.org/packages/6b/2f/1a0a116cdf4f0e9f1846e34676deed3b1275c432cde8b3aafd4ff9a77175/lief-0.17.6-cp314-cp314-macosx_11_0_arm64.whl"
+        sha256 "af39643ab79ae644d2063a2ef93de908e61a8f40e37b155683c477c1928e6c64"
+      end
+    end
+
+    on_intel do
+      resource "lief" do
+        url "https://files.pythonhosted.org/packages/76/bd/1bc1c1e364c06b74b9f16089f05622a29ed995fa8b5aba86e0a9fe5500a0/lief-0.17.6-cp314-cp314-macosx_11_0_x86_64.whl"
+        sha256 "c8129a70bc73e04fd9db4f49f386d4336a3a78ceef07c83ca74f9cf464c03c22"
+      end
+    end
   end
 
   def install
