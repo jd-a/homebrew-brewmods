@@ -6,7 +6,7 @@ class Radian < Formula
   url "https://github.com/randy3k/radian/archive/refs/tags/v0.6.16.tar.gz"
   sha256 "5b3e528e7fcde6e7a14e17d4f0cc412fba0ed5201cad4f3528a777ba084d354a"
   license "MIT"
-  revision 4
+  revision 5
 
   depends_on "python@3.14"
 
@@ -67,7 +67,17 @@ class Radian < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    virtualenv_install_with_resources without: ["lief"]
+    resources.each do |r|
+      if r.name == "lief"
+        r.stage do
+          system Formula["python@3.14"].opt_bin/"python3.14", "-m", "pip",
+            "--python=#{libexec}/bin/python",
+            "install", "--no-deps", "--no-compile", "--ignore-installed",
+            Pathname.pwd.children.find { |f| f.extname == ".whl" }.to_s
+        end
+      end
+    end
   end
 
   test do
