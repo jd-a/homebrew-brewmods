@@ -1,8 +1,8 @@
 class Arf < Formula
   desc "Modern R console written in Rust"
   homepage "https://github.com/eitsupi/arf"
-  url "https://github.com/eitsupi/arf/archive/refs/tags/v0.3.1.tar.gz"
-  sha256 "e93610f8c4b31d1f0deb5165a9f0133c4450e54cb1c2227f145045e9a525cece"
+  url "https://github.com/eitsupi/arf/archive/refs/tags/v0.3.2.tar.gz"
+  sha256 "c2f7ac073d17063417e9bb026fd226dd39c31b350d3d26c305fe7ee149711f4a"
   license "MIT"
 
   depends_on "rust" => :build
