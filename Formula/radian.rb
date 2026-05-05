@@ -6,7 +6,7 @@ class Radian < Formula
   url "https://github.com/randy3k/radian/archive/refs/tags/v0.6.15.tar.gz"
   sha256 "ae672d840691b0f2304b6a507454325444ffee3d91e34dadfdb8a2090e124858"
   license "MIT"
-  revision 1
+  revision 2
 
   depends_on "python@3.14"
 
