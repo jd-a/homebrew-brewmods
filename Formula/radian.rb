@@ -4,7 +4,7 @@ class Radian < Formula
   desc "R console for the 21st century"
   homepage "https://github.com/randy3k/radian"
   url "https://github.com/randy3k/radian/archive/refs/tags/v0.6.16.tar.gz"
-  sha256 "ae672d840691b0f2304b6a507454325444ffee3d91e34dadfdb8a2090e124858"
+  sha256 "5b3e528e7fcde6e7a14e17d4f0cc412fba0ed5201cad4f3528a777ba084d354a"
   license "MIT"
 
   depends_on "python@3.14"
