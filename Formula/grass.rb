@@ -1,10 +1,9 @@
 class Grass < Formula
   desc "Geographic Resources Analysis Support System (GRASS GIS)"
   homepage "https://grass.osgeo.org/"
-  url "https://grass.osgeo.org/grass84/source/grass-8.4.2.tar.gz"
-  sha256 "066d5a612da8b00b9d62ea9e91022b8082b9a65b18549b4719078fd0cb26e142"
+  url "https://grass.osgeo.org/grass85/source/grass-8.5.0.tar.gz"
+  sha256 "5d06c81504ea961fab709943cf41d8b3e27cdbaae7ccca5baf3f7bb0c5d9f33d"
   license "GPL-2.0-or-later"
-  revision 3
 
   depends_on "bison" => :build
   depends_on "flex" => :build
@@ -28,8 +27,8 @@ class Grass < Formula
   depends_on "zstd"
   depends_on "zlib"
 
-  # For PostgreSQL 18 instead, change this line to: depends_on "postgresql@18"
-  depends_on "postgresql@17"  # provides libpq headers/libs too :contentReference[oaicite:5]{index=5}
+  # For PostgreSQL 18 connector instead, change this line to: depends_on "libpq@18"
+  depends_on "libpq@17"  # provides libpq headers/libs
 
   depends_on "python@3.14"
 
@@ -40,7 +39,7 @@ class Grass < Formula
 
     openblas = Formula["openblas"]
     libomp   = Formula["libomp"]
-    pg       = Formula["postgresql@17"]
+    pg       = Formula["libpq@17"]
 
     args = %W[
       --prefix=#{prefix}
@@ -74,7 +73,9 @@ class Grass < Formula
       --with-blas-includes=#{openblas.opt_include}
       --with-blas-libs=#{openblas.opt_lib}
 
-      --with-lapack=no
+      --with-lapack=yes
+      --with-lapack-includes=#{openblas.opt_include}
+      --with-lapack-libs=#{openblas.opt_lib}
 
       --with-pdal=#{Formula["pdal"].opt_bin}/pdal-config
 
@@ -106,7 +107,7 @@ class Grass < Formula
       --with-x=no
       --with-mysql=no
       --with-opencl=no
-      --with-opengl=osx
+      --with-opengl=aqua
     ]
 
     # Keep libLAS disabled (fragile/deprecated in many stacks); PDAL handles LAS well.
