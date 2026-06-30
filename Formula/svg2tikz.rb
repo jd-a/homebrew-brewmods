@@ -3,8 +3,8 @@ class Svg2tikz < Formula
 
   desc "Tool for converting SVG graphics to TikZ/PGF code"
   homepage "https://xyz2tex.github.io/svg2tikz/"
-  url "https://github.com/xyz2tex/svg2tikz/archive/refs/tags/v3.3.4.tar.gz"
-  sha256 "2bf5f3456aa7969ad8a785c7a4dcab94a0b05e7b286a1a96ea26bd960b60e20e"
+  url "https://github.com/xyz2tex/svg2tikz/archive/refs/tags/v3.3.6.tar.gz"
+  sha256 "60a8f8f235ea02c347f85664ca72b4177e1830ef218a7f9e4ec2cfd1b9bdcfef"
   license "GPL-2.0-or-later"
 
   depends_on "python@3.14"
@@ -17,8 +17,8 @@ class Svg2tikz < Formula
   depends_on "pkg-config" => :build
 
   resource "lxml" do
-    url "https://files.pythonhosted.org/packages/aa/88/262177de60548e5a2bfc46ad28232c9e9cbde697bd94132aeb80364675cb/lxml-6.0.2.tar.gz"
-    sha256 "cd79f3367bd74b317dda655dc8fcfa304d9eb6e4fb06b7168c5cf27f96e0cd62"
+    url "https://files.pythonhosted.org/packages/aa/88/262177de60548e5a2bfc46ad28232c9e9cbde697bd94132aeb80364675cb/lxml-6.1.1.tar.gz"
+    sha256 "ba96ae44888e0185281e937633a743ea90d5a196c6000f82565ebb0580012d40"
   end
 
   resource "inkex" do
@@ -27,18 +27,18 @@ class Svg2tikz < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz"
-    sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
+    url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-26.2.tar.gz"
+    sha256 "ff452ff5a3e828ce110190feff1178bb1f2ea2281fa2075aadb987c2fb221661"
   end
 
   resource "cssselect" do
-    url "https://files.pythonhosted.org/packages/72/0a/c3ea9573b1dc2e151abfe88c7fe0c26d1892fe6ed02d0cdb30f0d57029d5/cssselect-1.3.0.tar.gz"
-    sha256 "57f8a99424cfab289a1b6a816a43075a4b00948c86b4dcf3ef4ee7e15f7ab0c7"
+    url "https://files.pythonhosted.org/packages/72/0a/c3ea9573b1dc2e151abfe88c7fe0c26d1892fe6ed02d0cdb30f0d57029d5/cssselect-1.4.0.tar.gz"
+    sha256 "fdaf0a1425e17dfe8c5cf66191d211b357cf7872ae8afc4c6762ddd8ac47fc92"
   end
 
   resource "pyparsing" do
-    url "https://files.pythonhosted.org/packages/33/c1/1d9de9aeaa1b89b0186e5fe23294ff6517fce1bc69149185577cd31016b2/pyparsing-3.3.1.tar.gz"
-    sha256 "47fad0f17ac1e2cad3de3b458570fbc9b03560aa029ed5e16ee5554da9a2251c"
+    url "https://files.pythonhosted.org/packages/33/c1/1d9de9aeaa1b89b0186e5fe23294ff6517fce1bc69149185577cd31016b2/pyparsing-3.3.2.tar.gz"
+    sha256 "c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc"
   end
 
   resource "pySerial" do
