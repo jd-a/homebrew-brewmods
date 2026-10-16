@@ -4,10 +4,11 @@ class Grass < Formula
   url "https://grass.osgeo.org/grass85/source/grass-8.5.0.tar.gz"
   sha256 "5d06c81504ea961fab709943cf41d8b3e27cdbaae7ccca5baf3f7bb0c5d9f33d"
   license "GPL-2.0-or-later"
+  revision 1
 
   depends_on "bison" => :build
   depends_on "flex" => :build
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
 
   depends_on "bzip2"
   depends_on "cairo"
@@ -15,31 +16,30 @@ class Grass < Formula
   depends_on "freetype"
   depends_on "gdal"
   depends_on "geos"
-  depends_on "libomp"      # OpenMP runtime on macOS
+  depends_on "libomp"
   depends_on "libpng"
+  depends_on "libpq@17"
   depends_on "libsvm"
-  depends_on "openblas"    # BLAS provider
+  depends_on "libtiff"
+  depends_on "openblas"
   depends_on "pdal"
   depends_on "proj"
+  depends_on "python@3.15"
   depends_on "readline"
   depends_on "sqlite"
-  depends_on "libtiff"
-  depends_on "zstd"
   depends_on "zlib"
-
-  # For PostgreSQL 18 connector instead, change this line to: depends_on "libpq@18"
-  depends_on "libpq@17"  # provides libpq headers/libs
-
-  depends_on "python@3.14"
+  depends_on "zstd"
 
   def install
-    # PDAL + friends: require C++17; enforce it explicitly.
+    # GRASS/PDAL C++ code requires C++17.
     ENV.append "CXXFLAGS", "-std=c++17"
-    ENV.append "CFLAGS", "-DGL_SILENCE_DEPRECATION"
 
-    openblas = Formula["openblas"]
-    libomp   = Formula["libomp"]
-    pg       = Formula["libpq@17"]
+    # Silence warnings from Apple's deprecated OpenGL implementation.
+    ENV.append "CFLAGS", "-DGL_SILENCE_DEPRECATION"
+    ENV.append "CXXFLAGS", "-DGL_SILENCE_DEPRECATION"
+
+    libomp = Formula["libomp"]
+    pg = Formula["libpq@17"]
 
     args = %W[
       --prefix=#{prefix}
@@ -53,6 +53,7 @@ class Grass < Formula
       --with-cairo-includes=#{Formula["cairo"].opt_include}/cairo
       --with-cairo-libs=#{Formula["cairo"].opt_lib}
 
+      --with-fftw
       --with-fftw-includes=#{Formula["fftw"].opt_include}
       --with-fftw-libs=#{Formula["fftw"].opt_lib}
 
@@ -63,21 +64,18 @@ class Grass < Formula
       --with-gdal=#{Formula["gdal"].opt_bin}/gdal-config
       --with-geos=#{Formula["geos"].opt_bin}/geos-config
 
+      --with-libpng=#{Formula["libpng"].opt_bin}/libpng-config
+
       --with-libsvm=yes
 
       --with-openmp=yes
       --with-openmp-includes=#{libomp.opt_include}
       --with-openmp-libs=#{libomp.opt_lib}
 
-      --with-blas=yes
-      --with-blas-includes=#{openblas.opt_include}
-      --with-blas-libs=#{openblas.opt_lib}
+      --with-blas=openblas
+      --with-lapack=openblas
 
-      --with-lapack=yes
-      --with-lapack-includes=#{openblas.opt_include}
-      --with-lapack-libs=#{openblas.opt_lib}
-
-      --with-pdal=#{Formula["pdal"].opt_bin}/pdal-config
+      --with-pdal=yes
 
       --with-postgres=yes
       --with-postgres-includes=#{pg.opt_include}
@@ -97,6 +95,7 @@ class Grass < Formula
       --with-sqlite-includes=#{Formula["sqlite"].opt_include}
       --with-sqlite-libs=#{Formula["sqlite"].opt_lib}
 
+      --with-tiff
       --with-tiff-includes=#{Formula["libtiff"].opt_include}
       --with-tiff-libs=#{Formula["libtiff"].opt_lib}
 
@@ -104,14 +103,12 @@ class Grass < Formula
       --with-zstd-includes=#{Formula["zstd"].opt_include}
       --with-zstd-libs=#{Formula["zstd"].opt_lib}
 
-      --with-x=no
+      --with-liblas=no
       --with-mysql=no
       --with-opencl=no
       --with-opengl=aqua
+      --with-x=no
     ]
-
-    # Keep libLAS disabled (fragile/deprecated in many stacks); PDAL handles LAS well.
-    args += ["--with-liblas=no"]
 
     system "./configure", *args
     system "make"
@@ -120,5 +117,13 @@ class Grass < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/grass --version")
+
+    ENV["GRASS_CONFIG_DIR"] = testpath/".grass8"
+
+    output = shell_output(
+      "#{bin}/grass --tmp-project EPSG:4326 --exec g.proj -p",
+    )
+
+    assert_match "WGS 84", output
   end
 end
