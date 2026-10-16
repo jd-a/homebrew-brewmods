@@ -7,18 +7,19 @@ class Svg2tikz < Formula
   sha256 "60a8f8f235ea02c347f85664ca72b4177e1830ef218a7f9e4ec2cfd1b9bdcfef"
   license "GPL-2.0-or-later"
 
-  depends_on "python@3.14"
+  depends_on "pkgconf" => :build
+
+  depends_on "libxml2"
+  depends_on "libxslt"
+  depends_on "numpy"
   depends_on "pillow"
   depends_on "py3cairo"
   depends_on "pygobject3"
-  depends_on "numpy"
-  depends_on "libxml2"
-  depends_on "libxslt"
-  depends_on "pkg-config" => :build
+  depends_on "python@3.15"
 
   resource "lxml" do
-    url "https://files.pythonhosted.org/packages/05/3b/aab6728cae887456f409b4d75e8a01856e4f04bd510de38052a47768b680/lxml-6.1.1.tar.gz"
-    sha256 "ba96ae44888e0185281e937633a743ea90d5a196c6000f82565ebb0580012d40"
+    url "https://files.pythonhosted.org/packages/76/3d/14e82fc7c8fb1b7761f7e748fd47e2ec8276d137b6acfe5a4bb73853e08f/lxml-5.4.0.tar.gz"
+    sha256 "d12832e1dbea4be280b22fd0ea7c9b87f0d8fc51ba06e92dc62d52f804f78ebd"
   end
 
   resource "inkex" do
@@ -27,21 +28,21 @@ class Svg2tikz < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/d7/f1/e7a6dd94a8d4a5626c03e4e99c87f241ba9e350cd9e6d75123f992427270/packaging-26.2.tar.gz"
-    sha256 "ff452ff5a3e828ce110190feff1178bb1f2ea2281fa2075aadb987c2fb221661"
+    url "https://files.pythonhosted.org/packages/7d/fa/3944b40b07da9ce895c0e6303a5ab7d53da063554f534556b134a54d6093/packaging-26.3.tar.gz"
+    sha256 "94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79"
   end
 
   resource "cssselect" do
-    url "https://files.pythonhosted.org/packages/ec/2e/cdfd8b01c37cbf4f9482eefd455853a3cf9c995029a46acd31dfaa9c1dd6/cssselect-1.4.0.tar.gz"
-    sha256 "fdaf0a1425e17dfe8c5cf66191d211b357cf7872ae8afc4c6762ddd8ac47fc92"
+    url "https://files.pythonhosted.org/packages/c8/8b/dc32df939ab541fca6ee8964d26aa231dbe231cdc2b2713228161441ba9c/cssselect-1.6.0.tar.gz"
+    sha256 "8c83a7139e97b93aa5ebdc0f46e785f7056a08a8bf201e597a6a2629d7eb11db"
   end
 
   resource "pyparsing" do
-    url "https://files.pythonhosted.org/packages/f3/91/9c6ee907786a473bf81c5f53cf703ba0957b23ab84c264080fb5a450416f/pyparsing-3.3.2.tar.gz"
-    sha256 "c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc"
+    url "https://files.pythonhosted.org/packages/e4/11/b213bebff182584360cb8d17c72c1677fec5c5c228de439e63bcf8ab1c8f/pyparsing-3.3.3.tar.gz"
+    sha256 "928ae7e20211f3b6f3915a72f06a0cfd29ab9d24279dd6346b6b1a7146397d36"
   end
 
-  resource "pySerial" do
+  resource "pyserial" do
     url "https://files.pythonhosted.org/packages/1e/7d/ae3f0a63f41e4d2f6cb66a5b57197850f919f59e558159a4dd3a818f5082/pyserial-3.5.tar.gz"
     sha256 "3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb"
   end
@@ -57,15 +58,35 @@ class Svg2tikz < Formula
   end
 
   resource "webencodings" do
-    url "https://files.pythonhosted.org/packages/0b/02/ae6ceac1baeda530866a85075641cec12989bd8d31af6d5ab4a3e8c92f47/webencodings-0.5.1.tar.gz"
-    sha256 "b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"
+    url "https://files.pythonhosted.org/packages/d5/a0/8fd707bcb776a7be556bad06a2ea5fb9bd519df78ef8e26f70ccf0f38bff/webencodings-0.6.1.tar.gz"
+    sha256 "565f9ad031c702dae404e27a099e3e09186a3ab1b9520f06d215502b651fd910"
   end
-  
+
   def install
     virtualenv_install_with_resources
   end
 
   test do
-    system bin/"svg2tikz", "--version"
+    assert_match version.to_s, shell_output("#{bin}/svg2tikz --version")
+
+    # Verify that Python dependencies supplied by Homebrew are visible
+    # inside svg2tikz's virtualenv.
+    system libexec/"bin/python", "-c", "import cairo, gi, lxml, numpy, PIL"
+
+    # Exercise an actual SVG -> TikZ conversion rather than only
+    # checking whether the entry point starts.
+    (testpath/"test.svg").write <<~SVG
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="10"
+           height="10"
+           viewBox="0 0 10 10">
+        <path d="M 1 1 L 9 9" fill="none" stroke="black"/>
+      </svg>
+    SVG
+
+    output = shell_output(
+      "#{bin}/svg2tikz --codeoutput codeonly #{testpath}/test.svg",
+    )
+    assert_match "\\path", output
   end
 end
