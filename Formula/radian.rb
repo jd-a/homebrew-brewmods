@@ -70,7 +70,7 @@ class Radian < Formula
     resources.each do |r|
       if r.name == "lief"
         r.stage do
-          system Formula["python@3.14"].opt_bin/"python3.15", "-m", "pip",
+          system Formula["python@3.15"].opt_bin/"python3.15", "-m", "pip",
             "--python=#{libexec}/bin/python",
             "install", "--no-deps", "--no-compile", "--ignore-installed",
             Pathname.pwd.children.find { |f| f.extname == ".whl" }.to_s
