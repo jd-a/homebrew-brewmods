@@ -24,8 +24,8 @@ class Svg2tikz < Formula
   end
 
   resource "inkex" do
-    url "https://files.pythonhosted.org/packages/9c/a8/ef5b5776e8f2a05e2eff2c9b6acf2ea8e90a9af5d29f0841a8ac5111ce60/inkex-1.4.1.tar.gz"
-    sha256 "2f9803154806ebae8a40b33ef2c691806a472857adc90303eaa32482bd8c19ed"
+    url "https://files.pythonhosted.org/packages/48/de/bb8fecc38c2925f105b745ddfe35388c921bc3a5e9014325254451ab4af7/inkex-1.4.1-py3-none-any.whl"
+    sha256 "5039af02a834144cd9373448bb81c9d657319e5734dc8db0609bb306cbcf2726"
   end
 
   resource "packaging" do
