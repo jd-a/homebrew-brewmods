@@ -6,6 +6,7 @@ class Svg2tikz < Formula
   url "https://github.com/xyz2tex/svg2tikz/archive/refs/tags/v3.3.6.tar.gz"
   sha256 "60a8f8f235ea02c347f85664ca72b4177e1830ef218a7f9e4ec2cfd1b9bdcfef"
   license "GPL-2.0-or-later"
+  revision 1
 
   depends_on "pkgconf" => :build
 
