@@ -10,45 +10,47 @@ class FdkAacEncoder < Formula
   depends_on "libtool" => :build
   depends_on "pkgconf" => :build
 
+  depends_on "jd-a/brewmods/fdk-aac"
+
   def install
+    fdk_aac = Formula["jd-a/brewmods/fdk-aac"]
+
+    # fdkaac's configure script uses:
+    #
+    #   PKG_CHECK_MODULES([FDK_AAC], [fdk-aac])
+    #
+    # Explicitly expose the pkg-config metadata from our private formula.
+    ENV.prepend_path "PKG_CONFIG_PATH", fdk_aac.opt_lib/"pkgconfig"
+
     system "autoreconf", "--force", "--install", "--verbose"
+
     system "./configure",
            "--disable-silent-rules",
            "--mandir=#{man}",
            *std_configure_args
+
     system "make", "install"
   end
 
   test do
     sample_rate = 44100
-    two_pi = Math::PI * 2
-
-    num_samples = sample_rate
     frequency = 440.0
     max_amplitude = 0.2
+    num_samples = sample_rate
 
-    position_in_period = 0.0
-    position_in_period_delta = frequency / sample_rate
-
-    samples = Array.new(num_samples, 0.0)
-
-    num_samples.times do |i|
-      samples[i] = Math.sin(position_in_period * two_pi) * max_amplitude
-
-      position_in_period += position_in_period_delta
-      position_in_period -= 1.0 if position_in_period >= 1.0
+    samples = Array.new(num_samples) do |i|
+      sample = Math.sin(2 * Math::PI * frequency * i / sample_rate)
+      (sample * max_amplitude * 32767.0).round
     end
 
-    samples.map! { |sample| (sample * 32767.0).round }
-
-    (testpath/"tone.pcm").open("wb") do |f|
-      f.syswrite(samples.pack("s*"))
-    end
+    (testpath/"tone.pcm").binwrite(samples.pack("s<*"))
 
     system bin/"fdkaac",
            "-R",
            "--raw-channels", "1",
+           "--raw-rate", sample_rate.to_s,
            "-m", "1",
+           "-o", testpath/"tone.m4a",
            testpath/"tone.pcm",
            "--title", "Test Tone"
 
