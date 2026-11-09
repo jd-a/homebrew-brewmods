@@ -3,15 +3,15 @@ class Radian < Formula
 
   desc "R console for the 21st century"
   homepage "https://github.com/randy3k/radian"
-  url "https://github.com/randy3k/radian/archive/refs/tags/v0.7.1.tar.gz"
-  sha256 "a73dc732a8965671e3420027714b9cf5ea2146563ef92adf53083939ca80a077"
+  url "https://github.com/randy3k/radian/archive/refs/tags/v0.8.0.tar.gz"
+  sha256 "ad92b7601cfd955ab1304bf40c76ccae22a88148305253a94d9ef71dbb5ae959"
   license "MIT"
 
   depends_on "python@3.15"
 
   resource "rchitect" do
-    url "https://files.pythonhosted.org/packages/0a/82/c88743b9e0c545ba8e980eb8e423f0ef3b40e2ef416a6f8bfaa517aad252/rchitect-0.5.2.tar.gz"
-    sha256 "adfa942c4a8b84a4df259a3f1842e78e4747b5924154590c4f29f8b5f1341ee0"
+    url "https://files.pythonhosted.org/packages/16/e3/eb876bb94db13b6ac53643b2dc61717bf913aae17edcc981213552ac3542/rchitect-0.6.0.tar.gz"
+    sha256 "8620a3e91cdabdd4f19481502526e4aaa5c46cb63fca7229d07564a354692e6f"
   end
 
   resource "packaging" do
@@ -25,8 +25,8 @@ class Radian < Formula
   end
 
   resource "pycparser" do
-    url "https://files.pythonhosted.org/packages/da/a8/c5fdbeee588bb8ada9458774f43adf1bdd30bd59157055142183e769a024/pycparser-3.11.tar.gz"
-    sha256 "d875f09c3507d00e1aba0eecc6dcadc1352f30fff09dc6bff2f1c2935e97c2bc"
+    url "https://files.pythonhosted.org/packages/cb/27/eeb9f307bf07060f3d9f9aa0fb8c15b01bdfded0a941e4b2719c7f94cacd/pycparser-3.12.tar.gz"
+    sha256 "f03387877eab82ce01bbdfd0ba7252ee55a90b1c708d5129e2ce915475cf1db6"
   end
 
   resource "prompt-toolkit" do
@@ -35,8 +35,8 @@ class Radian < Formula
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/f0/b4/7830542634bb2d3e62aa3b586a72d5b3b6c91c3168929e7000ef3fed041d/wcwidth-0.9.2.tar.gz"
-    sha256 "ae0ef90b90f6af38b54f1fe6d58662ec33b3cb4b8391958a62416d654231727b"
+    url "https://files.pythonhosted.org/packages/ea/01/e5ac23733628a6bbb91913a765fcf55ee8070d8d991bc88fdaaf805052c7/wcwidth-0.9.4.tar.gz"
+    sha256 "fd8d57d3cdfe570e3265c8fab1885c24e34ef40889c0759c0c304a19e9835954"
   end
 
   resource "pygments" do
